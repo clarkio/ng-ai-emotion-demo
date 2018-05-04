@@ -1,0 +1,50 @@
+<hello name="{{ name }}"></hello>
+
+<div>
+	Code has been adapted (with permission) for Angular from Sarah Drasner's Vue.js Azure Emotion API on CodePen
+  <ul>
+    <li>Sarah Drasner: <a href="https://twitter.com/sarah_edo">https://twitter.com/sarah_edo</a></li>
+	  <li>CodePen: <a href="https://codepen.io/sdras/details/dZOdpv">https://codepen.io/sdras/details/dZOdpv</a></li>
+    <li>Brian Clark: <a href="https://twitter.com/_clarkio">https://twitter.com/_clarkio</a></li>
+  </ul>
+</div>
+
+
+<!--
+  Code has been adapted from Sarah Drasner's Vue.js Azure Emotion API on CodePen
+  Sarah: https://twitter.com/sarah_edo
+  CodePen: https://codepen.io/sdras/details/dZOdpv
+-->
+<div id="app">
+	<aside>
+		<h1 class="nobottom">Azure's Emotion API</h1>
+		<p>
+			<a href="https://aka.ms/rgqiqi">Check out the docs 🔸</a>
+		</p>
+		<hr>
+		<div *ngIf="!image else showImage">
+			<h2 class="nomargin">Select an image: <input type="file" name="file" id="file" class="inputfile" (change)="fileUpload($event.target.files)"
+				/>
+				<label for="file">+</label></h2>
+			<p class="useone" (click)="useMine()">or use one of mine</p>
+		</div>
+		<ng-template #showImage>
+			<img [src]="image" />
+		</ng-template>
+
+		<section *ngIf="image && !noFace">
+			<div *ngIf="this.thing else elseBlock">
+				<h3>Highest Result: {{result}}</h3>
+				<button (click)="removeImage()">Try it again!</button>
+			</div>
+			<ng-template #elseBlock>
+				Loading...
+			</ng-template>
+		</section>
+
+		<section *ngIf="noFace">
+			<p>No face was detected!</p>
+			<button (click)="removeImage()">Try again!</button>
+		</section>
+	</aside>
+</div>
